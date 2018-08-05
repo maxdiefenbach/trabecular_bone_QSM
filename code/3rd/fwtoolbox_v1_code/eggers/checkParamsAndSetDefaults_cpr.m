@@ -1,0 +1,105 @@
+%% Function: checkParamsAndSetDefaults_cpr
+%%
+%% Description: Check validity of input parameters and set defaults for unspecified parameters
+%%
+%% Input:
+%%   - imDataParams : TEs, images and field strength
+%%   - algoParamsIn : Algorithm parameters
+%%
+%% Output:
+%%   - validParams  : Binary variable (0 if parameters are not valid for this algorithm)
+%%   - algoParamsOut: Algorithm parameters after "completion", i.e. insertion of defaults for unspecified parameters
+%% 
+%%
+%% Author: Holger Eggers
+%% Date created: January 11, 2012
+%% Date last modified: January 11, 2012
+%%
+
+function [validParams, algoParamsOut] = checkParamsAndSetDefaults_cpr( imDataParams,algoParamsIn )
+
+validParams   = 1;
+algoParamsOut = algoParamsIn;
+
+% Start by checking validity of provided data and recon parameters
+if size(imDataParams.species(1).amps, 1) ~= size(imDataParams.species(1).amps, 2)
+  disp('ERROR: Please provide square images');
+  validParams = 0;
+end
+
+if size(imDataParams.species(1).amps) ~= size(imDataParams.species(2).amps)
+  disp('ERROR: Please provide images with matching size');
+  validParams = 0;
+end
+
+if size(imDataParams.species(1).fieldmap) ~= size(imDataParams.species(2).fieldmap)
+  disp('ERROR: Please provide field maps with matching size');
+  validParams = 0;
+end
+
+if size(imDataParams.species(1).amps) ~= size(imDataParams.species(1).fieldmap)
+  disp('ERROR: Please provide images and field maps with matching size');
+  validParams = 0;
+end
+
+if algoParamsIn.nv < 1
+  disp('ERROR: Please provide correct number of interleaves, projections, ...');
+  validParams = 0;
+end
+
+if algoParamsIn.ns < 1
+  disp('ERROR: Please provide correct number of samples per interleaf, projection, ...');
+  validParams = 0;
+end
+
+if size(algoParamsIn.trajectory, 1) ~= 2*algoParamsIn.nv*algoParamsIn.ns
+  disp('ERROR: Please provide correct number of sampling positions');
+  validParams = 0;
+end
+
+if size(algoParamsIn.density_compensation, 1) ~= algoParamsIn.ns
+  disp('ERROR: Please provide correct number of sampling density compensation weights');
+  validParams = 0;
+end
+
+try
+  algoParamsOut.alpha = algoParamsIn.alpha;
+  if algoParamsOut.alpha < 1.0
+    algoParamsOut.alpha = 1.0;
+  end
+catch
+  algoParamsOut.alpha = 1.25;
+end
+
+try
+  algoParamsOut.ks = algoParamsIn.ks;
+  if algoParamsOut.ks < 2
+    algoParamsOut.ks = 2;
+  end
+catch
+  algoParamsOut.ks = 4;
+end
+
+try
+  algoParamsOut.gti = algoParamsIn.gti;
+  if algoParamsOut.gti < 1
+    algoParamsOut.gti = 1;
+  end
+catch
+  algoParamsOut.gti = 1000;
+end
+
+if algoParamsIn.tau <= 0.0
+  disp('ERROR: Please provide correct sampling interval');
+  validParams = 0;
+end
+
+try algoParamsOut.shutter = algoParamsIn.shutter;
+  if algoParamsOut.shutter >= 1
+      algoParamsOut.shutter = 1;
+  else
+      algoParamsOut.shutter = 0;
+  end
+catch
+  algoParamsOut.shutter = 1;
+end

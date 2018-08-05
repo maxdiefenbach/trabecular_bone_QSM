@@ -1,0 +1,19 @@
+function P = get_permMat_mat2RAI(orientation)
+    
+    switch lower(orientation)
+      case 'tra'
+        P = [0 1 0; ...
+             1 0 0; ...
+             0 0 1];
+      case 'sag'
+        P = [ 0  0 -1; ...
+              0  1  0; ...
+             -1  0  0];
+      case 'cor'
+        P = [ 0 1 0; ...
+              0 0 1; ...
+             -1 0 0];
+      otherwise
+        error(sprintf('Orientation ""%s"" not known.', orientation))
+    end
+end

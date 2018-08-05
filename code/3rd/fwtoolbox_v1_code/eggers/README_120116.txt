@@ -1,0 +1,43 @@
+Author: Holger Eggers
+Date: January 13, 2012
+
+This folder contains functions for field inhomogeneity correction.
+
+The main function is cpr.m. It implements the gridding-based field inhomogeneity 
+correction described in Eggers H, Knopp T, Potts D. Field inhomogeneity correction 
+based on gridding reconstruction for magnetic resonance imaging. IEEE Trans Med 
+Imaging 2007; 26:374-384.
+
+More specifically, it permits a direct, i.e. non-iterative, conjugate phase 
+reconstruction-type field inhomogeneity correction, which requires (uncorrected) 
+complex water and fat images, the field map, the k-space trajectory, and sampling 
+density compensation weights as input and provides (corrected) complex water and 
+fat images as output.
+
+The test script test_eggers_cpr.m illustrates its use on the example of a spiral 
+acquisition. It relies on complex single echo images as input, which have already 
+been produced from the raw data using gridding reconstruction (the subfunction 
+grid_2d may be employed for this purpose if needed) and SENSE reconstruction for 
+coil combination. These complex single echo images are first separated, relying 
+on Diego Hernando's software in this example (any other may be chosen instead). 
+The resulting complex water and fat images, as well as the resulting field map 
+then serve as input to the field inhomogeneity correction.
+
+
+Some remarks:
+
+* For the sake of simplicity, the fat is modeled as a single-peak spectrum for 
+  the field inhomogeneity correction in the test script. An extension to a 
+  multi-peak spectrum is straightforward, but is substantially slower processing-
+  wise.
+
+* As examples, functions for generating the k-space trajectory and the sampling 
+  density compensation weights for the kind of spiral acquisition used in collecting 
+  the test data set are provided (compute_constant_density_spiral_spiral_trajectory.m 
+  and compute_constant_density_spiral_density.m). The field inhomogeneity correction 
+  itself accepts in principle any type of k-space trajectory. 
+
+* The subfunctions support a gridding both from a Cartesian to a non-Cartesian and 
+  from a non-Cartesian to a Cartesian grid, thus facilitating an extension of the 
+  provided direct conjugate phase reconstruction-type field inhomogeneity correction 
+  to an iterative field inhomogeneity correction.

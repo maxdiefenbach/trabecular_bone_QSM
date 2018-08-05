@@ -1,0 +1,34 @@
+% test 2D gridding/ inverse gridding
+% y = A*x
+% x: 2D cartesian image
+% y: 2D radial k-space
+ii = sqrt(-1);
+offres = 100*ones(64,64);
+
+clear mask;
+%x = rand(100,1)+ii*rand(100,1);
+x = rand(64,64,2) + ii*rand(64,64,2);
+z = rand(64,64,1) + ii*rand(64,64,1);
+y = rand(64,64,20)+ii*rand(64,64,20);
+for i = 1:20
+mask(:,:,i) = ones(64);
+end
+t = (1:20)*0.001;
+f_wf = [0,214];
+
+%A = p2DFT_gridding(ones(10),10,10,10,4,2,100);
+
+% k_data = forward2D1(x, offres, t, f_wf,mask, [64,64]);
+%water_fat = forward_2D1_t(k_data, offres, t, f_wf, mask, imsize)
+
+d_offres = forward1_d(k_data,water_fat, offres, mask, t, f_wf, imsize)
+
+Ax  = forward1(  z, x(:), offres, mask, t, f_wf, [64,64]);
+Aty = forward1_t(y, x(:), offres, mask, t, f_wf, [64,64]);
+
+%Ax =  forward(x(1:100), x(101:200), offres, Trajectory, t, f_wf, imsize(1),no_samples);
+%Aty = forward_t(y, offres, Trajectory, t, f_wf, imsize(1),no_sp);
+
+% these should be equal
+z(:)'*Aty(:)
+Ax(:)'*y(:)

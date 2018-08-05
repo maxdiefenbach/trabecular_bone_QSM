@@ -1,0 +1,50 @@
+#+TITLE: README
+#+DATE: <2018-03-07 Wed>
+#+AUTHOR: Maximilian Diefenbach
+#+EMAIL: maximilian.diefenbach@tum.de
+#+OPTIONS: ':nil *:t -:t ::t <:t H:3 \n:nil ^:t arch:headline author:t broken-links:nil c:nil creator:nil
+#+OPTIONS: d:(not "LOGBOOK") date:t e:t email:nil f:t inline:t num:t p:nil pri:nil prop:nil stat:t tags:t tasks:t tex:t
+#+OPTIONS: timestamp:t title:t toc:nil todo:t |:t
+#+LANGUAGE: en
+#+SELECT_TAGS: export
+#+EXCLUDE_TAGS: noexport
+#+CREATOR: Emacs 25.3.1 (Org mode 9.1.6)
+
+* Description
+
+  Implementation of the VARPRO solver for chemical species separation (CSS)
+
+  described in 
+  /Diefenbach, M. N., Ruschke, S., & Karampinos, D. C., 
+  "A generalized formulation for parameter estimation in mr signals of multiple chemical species", 
+  In , Proceedings 25. Annual Meeting International Society for Magnetic Resonance in Medicine 
+  (pp. 5181) (2017). Honolulu, Hawaii: \url{http://dev.ismrm.org/2017/5181.html}./
+
+  #+BEGIN_SRC bibtex
+    @inproceedings{Diefenbach_ISMRM2017_5181,
+      author =       {Maximilian N Diefenbach and Stefan Ruschke and Dimitrios C Karampinos},
+      title =        {A Generalized Formulation for Parameter Estimation in MR Signals of Multiple Chemical Species},
+      booktitle =    {Proceedings 25. Annual Meeting International Society for Magnetic Resonance in Medicine},
+      year =         {2017},
+      volume =       {25},
+      pages =        {5181},
+      address =      {Honolulu, Hawaii},
+      note =         {electronic poster presentation},
+      publisher =    {\url{http://dev.ismrm.org/2017/5181.html}},
+    }
+  #+END_SRC
+  
+
+  This file is part of the BMRR toolbox.
+
+  | AUTHOR:      | Maximilian N. Diefenbach <maximilian.diefenbach@tum.de> |
+  | AFFILIATION: | Body Magnetic Resonance Research Group                  |
+  |              | Department of Diagnostic and Interventional Radiology   |
+  |              | Technical University of Munich                          |
+  |              | Klinikum rechts der Isar                                |
+  |              | Ismaninger Str. 22, 81675 Muenchen                      |
+  | URL:         | http://www.bmrrgroup.de                                 |
+
+
+* License
+  #+INCLUDE: "LICENSE" 

@@ -1,0 +1,123 @@
+%% test_eggers_cpr
+%%
+%% Test conjugate phase reconstruction on (Holger Eggers') data
+%%
+%% Author: Holger Eggers
+%% Date created: January 11, 2012
+%% Date last modified: January 11, 2012
+
+% Set path
+BASEPATH = './';
+
+addpath([BASEPATH '../hernando_111110/common/']);
+addpath([BASEPATH '../hernando_111110/graphcut/']);
+addpath([BASEPATH '../hernando_111110/descent/']);
+addpath([BASEPATH '../hernando_111110/mixed_fitting/']);
+addpath([BASEPATH '../hernando_111110/create_synthetic/']);
+mymachine = computer;
+if strcmp(mymachine,'GLNX86')
+  addpath([BASEPATH '../hernando_111110/matlab_bgl-4.0.1/']);
+else
+  addpath([BASEPATH '../hernando_111110/matlab_bgl-3.0-beta/']);
+end
+
+if ~strcmp(mymachine(1:4),'GLNX')
+  addpath([BASEPATH '../hernando_111110/matlab_bgl-wintemp/']);
+end  
+
+% Load input image data
+foldername = [BASEPATH 'eggers_data/'];
+load([foldername 'HEdata1.mat']);
+
+imDataParams        = data;
+imDataParams.images = double(data.images);
+
+% Set parameters for water-fat separation (copied from Diego Hernando's test program)
+algoParams.species(1).name       = 'water';
+algoParams.species(1).frequency  = 0;
+algoParams.species(1).relAmps    = 1;
+algoParams.species(2).name       = 'fat';
+algoParams.species(2).frequency  = [-3.80, -3.40, -2.60, -1.94, -0.39, 0.60];
+algoParams.species(2).relAmps    = [0.087 0.693 0.128 0.004 0.039 0.048];
+
+algoParams.size_clique           = 1;          % Size of MRF neighborhood (1 uses an 8-neighborhood, common in 2D)
+algoParams.range_r2star          = [0 100];    % Range of R2* values
+algoParams.NUM_R2STARS           = 11;         % Number of R2* values for quantization
+algoParams.range_fm              = [-400 400]; % Range of field map values
+algoParams.NUM_FMS               = 301;        % Number of field map values to discretize
+algoParams.NUM_ITERS             = 40;         % Number of graph cut iterations
+algoParams.SUBSAMPLE             = 2;          % Spatial subsampling for field map estimation (for speed)
+algoParams.DO_OT                 = 1;          % 0,1 flag to enable optimization transfer descent (final stage of field map estimation)
+algoParams.LMAP_POWER            = 2;          % Spatially-varying regularization (2 gives ~ uniformn resolution)
+algoParams.lambda                = 0.05;       % Regularization parameter
+algoParams.LMAP_EXTRA            = 0.05;       % More smoothing for low-signal regions
+algoParams.TRY_PERIODIC_RESIDUAL = 0;
+THRESHOLD                        = 0.01;
+
+% Run water-fat separation (copied from Diego Hernando's test program)
+tic
+  outParams = fw_i2cm1i_3pluspoint_hernando_graphcut( imDataParams, algoParams );
+toc
+
+% Display intermediate results
+figure(1);
+colormap('gray');
+imagesc(abs(outParams.species(1).amps));
+figure(2);
+colormap('gray');
+imagesc(abs(outParams.species(2).amps));
+figure(3);
+imagesc(outParams.fieldmap);
+colorbar;
+
+% Set parameters for field inhomogeneity correction
+algoParams.nv      =  15;         % Number of spiral interleaves
+algoParams.ns      =  6434;       % Number of spiral samples per interleaf
+
+algoParams.alpha   =  1.25;       % Gridding oversampling factor
+
+algoParams.ks      =  4;          % Gridding kernel size
+algoParams.gti     =  1000;       % Gridding kernel table increment
+
+algoParams.tau     =  2.325e-6;   % Sampling interval [s] 
+
+algoParams.shutter =  1;          % Circular image space shutter
+
+% Compute trajectory
+is                 =  size( outParams.species(1).amps, 1 );
+
+lambda             =  3.0;        % Shape parameter
+delay              =  0.0;
+
+trajectory =  compute_constant_density_spiral_trajectory( algoParams.nv, algoParams.ns, is, lambda, delay );
+
+% Compute sampling density compensation weights
+
+density_compensation =  compute_constant_density_spiral_density( algoParams.nv, algoParams.ns, 2 * ceil( algoParams.alpha * is / 2 ), is, lambda, delay, trajectory );
+
+trajectory =  is * trajectory + is / 2;
+
+algoParams.trajectory           =  trajectory; 
+algoParams.density_compensation =  density_compensation;
+
+gamma            = 42.6e6;
+chemical_shift   = -3.4e-6;
+frequency_offset = gamma * chemical_shift * imDataParams.FieldStrength;
+
+outParams.species(1).fieldmap = - outParams.fieldmap;
+outParams.species(2).fieldmap = - outParams.fieldmap - frequency_offset;
+
+% Run field inhomogeneity correction (fat modeled as single peak here)
+% (Eggers H, Knopp T, Potts D. Field inhomogeneity correction based on gridding reconstruction for 
+%  magnetic resonance imaging. IEEE Trans Med Imaging 2007; 26:374-384.
+tic
+  outDataParamsCpr = cpr( outDataParams, algoParams );
+toc
+
+% Display results
+figure(4);
+colormap('gray');
+imagesc(abs(squeeze(outDataParamsCpr.images(:,:,1,1,1))));
+figure(5);
+colormap('gray');
+imagesc(abs(squeeze(outDataParamsCpr.images(:,:,1,1,2))));

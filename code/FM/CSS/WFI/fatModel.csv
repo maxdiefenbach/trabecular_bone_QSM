@@ -1,0 +1,25 @@
+model name,parameter name,unit,A,B,C,D,E,F,G,H,I,J,reference,
+,peak number,,10,9,8,7,6,5,4,3,2,1,,
+,peak name,,Terminal Methyl,(Bulk) Methylene,beta-Carboxyl,Allytic Methylene,alpha-Carboxyl,Diacyllic Methylene,Glycerol Methylene,Glycerol Methylene,Glycerol Methine,Olefinic Methine,,
+,number of protons,,9,6 (cl-4) - 8 ndb + 2 nmidb,6,4 (ndb - nmidb),6,2 nmidb,2,2,1,2 ndb,,
+,chemical structure,,-(CH2)n-C*H*3,-(C*H*2)n-,-CO-CH2-C*H*2-,-C*H*2-CH=CH-C*H*2-,-CO-C*H*2-CH2-,-CH=CH-C*H*2-CH=CH-,-C*H*2-O-CO-,-C*H*2-O-CO-,-C*H*2-O-CO-,-C*H*=C*H*-,,
+Berglund 10 peaks,chemical shift,ppm,0.90,1.30,1.59,2.03,2.25,2.77,4.1,4.3,5.21,5.31,"Berglund, J., Ahlström, H., & Kullberg, J. (2012). Model-based mapping of fat unsaturation and chain length by chemical shift imaging-phantom validation and in vivo feasibility. Magnetic Resonance in Medicine, 68(6), 1815–1827. http://doi.org/10.1002/mrm.24196",
+Hamilton 9 peaks,chemical shift,ppm,0.90,1.30,1.60,2.02,2.24,2.75,4.20,0,5.19,5.29,"Hamilton, G., Yokoo, T., Bydder, M., Cruite, I., Schroeder, M. E., Sirlin, C. B., & Middleton, M. S. (2011). In vivo characterization of the liver fat 1H MR spectrum. NMR in Biomedicine, 24(7), 784–790. http://doi.org/10.1002/nbm.1622",combined peaks GH
+Peterson 8 peaks,chemical shift,ppm,0.75,1.16,1.47,1.88,2.1,2.61,4.06,0,5.17,0,"Peterson, P., & Sven M\aansson, Simultaneous quantification of fat content and fatty acid composition using mr imaging, Magnetic Resonance in Medicine, 69(3), 688–697 (2012).  http://dx.doi.org/10.1002/mrm.24297",combined peaks IJ and GH
+Hamilton 6 peaks,chemical shift,ppm,0.90,1.30,0,2.1,0,2.75,4.2,0,0,5.3,"Hamilton, G., Yokoo, T., Bydder, M., Cruite, I., Schroeder, M. E., Sirlin, C. B., & Middleton, M. S. (2011). In vivo characterization of the liver fat 1H MR spectrum. NMR in Biomedicine, 24(7), 784–790. http://doi.org/10.1002/nbm.1622","combined peaks IJ, GH, DE, BC"
+single peak,chemical shift,ppm,0,1.30,0,0,0,0,0,0,0,0,,
+single peak,relative amplitude,%,0,100,0,0,0,0,0,0,0,0,,
+scanner,chemical shift,ppm,0.9,1.30,1.59,2.03,2.25,2.77,0,0,0,5.31,Philips PPE R5.1.8,combined peaks GH
+scanner,relative amplitude,%,8.5,62.5,7.1,9.5,6.6,1.6,0,0,0,4.2,,erroneously combined peaks DG
+Hamilton liver,chemical shift,ppm,0.90,1.30,1.60,2.02,2.24,2.75,4.20,0,5.19,5.29,"Hamilton, G., Yokoo, T., Bydder, M., Cruite, I., Schroeder, M. E., Sirlin, C. B., & Middleton, M. S. (2011). In vivo characterization of the liver fat 1H MR spectrum. NMR in Biomedicine, 24(7), 784–790. http://doi.org/10.1002/nbm.1622",
+Hamilton liver,relative amplitude,%,8.8,64.2,5.8,6.2,5.8,0.6,3.9,0,1.0,3.7,,
+Ren marrow,chemical shift,ppm,0.90,1.30,1.60,2.02,2.24,2.75,4.20,0,5.19,5.29,"Hamilton, G., Schlein, A. N., Middleton, M. S., Hooker, C. A., Wolfson, T., Gamst, A. C., … Sirlin, C. B. (2016). In vivo triglyceride composition of abdominal adipose tissue measured by 1H MRS at 3T. Journal of Magnetic Resonance Imaging, 1–9. http://doi.org/10.1002/jmri.25453",
+Ren marrow,relative amplitude,%,9.0,58.4,6.0,8.5,6.0,1.5,4.0,0,1.0,5.7,,
+Ren SCAT,chemical shift,ppm,0.90,1.30,1.60,2.02,2.24,2.75,4.20,0,5.19,5.29,"Hamilton, G., Schlein, A. N., Middleton, M. S., Hooker, C. A., Wolfson, T., Gamst, A. C., … Sirlin, C. B. (2016). In vivo triglyceride composition of abdominal adipose tissue measured by 1H MRS at 3T. Journal of Magnetic Resonance Imaging, 1–9. http://doi.org/10.1002/jmri.25453",
+Ren SCAT,relative amplitude,%,8.9,59.3,5.9,8.1,5.9,1.5,3.9,0,1.0,5.5,,
+Hamilton VAT,chemical shift,ppm,0.90,1.30,1.60,2.02,2.24,2.75,4.20,0,5.19,5.29,"Hamilton, G., Schlein, A. N., Middleton, M. S., Hooker, C. A., Wolfson, T., Gamst, A. C., … Sirlin, C. B. (2016). In vivo triglyceride composition of abdominal adipose tissue measured by 1H MRS at 3T. Journal of Magnetic Resonance Imaging, 1–9. http://doi.org/10.1002/jmri.25453",
+Hamilton VAT,relative amplitude,%,8.9,59.6,5.9,8.0,5.9,1.4,3.9,0,1.0,5.4,,
+Hamilton sSAT,chemical shift,ppm,0.90,1.30,1.60,2.02,2.24,2.75,4.20,0,5.19,5.29,"Hamilton, G., Schlein, A. N., Middleton, M. S., Hooker, C. A., Wolfson, T., Gamst, A. C., … Sirlin, C. B. (2016). In vivo triglyceride composition of abdominal adipose tissue measured by 1H MRS at 3T. Journal of Magnetic Resonance Imaging, 1–9. http://doi.org/10.1002/jmri.25453",
+Hamilton sSAT,relative amplitude,%,8.9,59.1,5.9,8.2,5.9,1.5,3.9,0,1.0,5.6,,
+Hamilton dSAT,chemical shift,ppm,0.90,1.30,1.60,2.02,2.24,2.75,4.20,0,5.19,5.29,"Hamilton, G., Schlein, A. N., Middleton, M. S., Hooker, C. A., Wolfson, T., Gamst, A. C., … Sirlin, C. B. (2016). In vivo triglyceride composition of abdominal adipose tissue measured by 1H MRS at 3T. Journal of Magnetic Resonance Imaging, 1–9. http://doi.org/10.1002/jmri.25453",
+Hamilton dSAT,relative amplitude,%,8.9,59.3,5.9,8.1,5.9,1.5,3.9,0,1.0,5.5,,

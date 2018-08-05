@@ -1,0 +1,30 @@
+function res = DA(x, t, f_wf, mask, imsize)
+%
+%
+res.adjoint = 0;
+res.x       = x;
+%res.Trajectory = Trajectory;
+res.t       = t;
+res.f_wf    = f_wf;
+res.mask    = mask;
+res.imsize  = imsize;
+%res.no_sp = no_sp;
+%res.no_samples = no_samples; 
+res       = class(res,'DA');
+
+
+function res = DO2K2D(offres, wf, mask, t, f_wf,imsize)
+%
+%
+res.adjoint = 0;
+res.offres  = offres;
+res.mask    = mask;
+%res.Trajectory = Trajectory;
+res.t       = t;
+res.wf      = wf;
+res.f_wf    = f_wf;
+res.imsize  = imsize;
+%res.no_sp = no_sp;
+%res.no_samples = no_samples; 
+res       = class(res,'DO2K2D');
+

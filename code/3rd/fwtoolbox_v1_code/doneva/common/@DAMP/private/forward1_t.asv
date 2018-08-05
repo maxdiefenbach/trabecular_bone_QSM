@@ -1,0 +1,47 @@
+function d_offres = forward1_t(k_data,water_fat, offres, mask, t, f_wf, imsize)
+
+% forward transform 
+% simulate k-space data for given offresonance
+%
+% Input:
+%
+% Output: k_data: k space samples at the given positions in Trajectory and
+% the corresponding echo times t
+% Mariya Doneva, 2009
+
+
+ii = sqrt(-1);
+%k_data = zeros(imsize(1),imsize(2),length(t));
+
+water = reshape(water_fat(1:imsize(1)*imsize(2)), imsize(1),imsize(2));
+fat   = reshape(water_fat(imsize(1)*imsize(2)+1:2*imsize(1)*imsize(2)),imsize(1),imsize(2));
+
+d_offres = zeros(imsize);
+      
+
+    for j = 1:length(t)    
+        
+        d_offres = d_offres + conj(2*pi*ii*t(j)*exp(2*pi*ii*offres*t(j)).*((water + fat*exp(2*pi*ii*f_wf(2)*t(j))))).*ifft2c(mask(:,:,j).*k_data(:,:,j));  
+            
+    end
+ 
+    
+    
+%     
+%     
+% ii = sqrt(-1);
+% k_data = zeros(imsize(1),imsize(2),length(t));
+% 
+% water = reshape(water_fat(1:imsize(1)*imsize(2)),imsize(1),imsize(2));
+% fat = reshape(water_fat(imsize(1)*imsize(2)+1:2*imsize(1)*imsize(2)),imsize(1),imsize(2));
+% 
+%       
+% 
+%     for j = 1:length(t)  
+%         
+%             k_data(:,:,j) = mask(:,:,j).*fft2c(2*pi*ii*t(j)*(water + fat*exp(2*pi*ii*f_wf(2)*t(j))).*exp(2*pi*ii*offres*t(j)).*d_offres);
+%             
+%     end
+ 
+    
+    

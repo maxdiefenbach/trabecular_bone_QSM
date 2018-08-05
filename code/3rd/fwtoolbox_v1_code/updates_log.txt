@@ -1,0 +1,14 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Date: April 26, 2012
+
+Issue: Minor bugs in Doneva's code
+
+Details: (Kieren Hollingsworth raised these issues)
+
+In doneva/test_doneva.m, L87:
+Remove: kDataParams.FieldStrength = 1.5;
+Added:  kDataParams.FieldStrength = data.FieldStrength; % 120426: Field Strength specified in data
+
+In doneva/methods/nonlin_cg_gn.m, L166: 
+Added:    p    = param.pnorm_im; % 120426: This line was missing
