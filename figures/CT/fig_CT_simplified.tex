@@ -1,0 +1,27 @@
+\documentclass[tikz]{standalone}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{tikz,pgfplots}
+\usepackage{grffile}
+\pgfplotsset{compat=newest}
+\usetikzlibrary{plotmarks,positioning,fit,shapes.geometric,arrows,external,matrix,backgrounds,spy}
+\usepgfplotslibrary{colormaps,patchplots,groupplots}
+\usepackage{siunitx,xcolor}
+
+
+\begin{document}
+
+\definecolor{viridis_zero_color}{RGB}{33, 145, 140}
+
+\begin{tikzpicture}
+  
+  \node (left) {%
+    \includegraphics[]{fig_CT4_simplified}
+  };
+  \node[right=0cm of left, xshift=-0.4cm] {%
+    \includegraphics[]{fig_CT3_simplified}
+  };
+
+\end{tikzpicture}
+
+\end{document}

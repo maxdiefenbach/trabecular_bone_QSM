@@ -1,0 +1,25 @@
+\documentclass[tikz]{standalone}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{tikz,pgfplots}
+\usepackage{grffile}
+\pgfplotsset{compat=newest}
+\usetikzlibrary{plotmarks,positioning,fit,shapes.geometric,arrows,external,matrix,backgrounds,spy}
+\usepgfplotslibrary{colormaps,patchplots,groupplots}
+\usepackage{siunitx,xcolor}
+
+
+\begin{document}
+
+\begin{tikzpicture}
+  
+  \node (left) {%
+    \includegraphics[]{fig_CT4}
+  };
+  \node[right=0cm of left] {%
+    \includegraphics[]{fig_CT3}
+  };
+
+\end{tikzpicture}
+
+\end{document}

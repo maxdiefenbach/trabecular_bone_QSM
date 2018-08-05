@@ -1,0 +1,58 @@
+\begin{tikzpicture}
+  \tikzstyle{img}=[%
+  draw,
+  inner sep=0cm,
+  outer sep=0cm,
+  minimum width=2cm,
+  minimum height=2cm];
+
+  % source images
+  \node[img,label={magnitude}] (M3) {};
+  \node[img,below left of=M3,node distance=1cm] (M2) {};
+  \node[img,below left of=M2,node distance=0.5cm] (M1) {};
+  \node[img,right of=M3,node distance=2cm,label={phase}] (P3) {};
+  \node[img,below left of=P3,node distance=1cm] (P2) {};
+  \node[img,below left of=P2,node distance=0.5cm] (P1) {};
+  \node[draw,fit={(M1) (M3) (P1) (P3)},inner sep=20pt] {};
+  \node[draw=none,above left=of P1,font=\tiny]{TE};
+  \draw[->] ([xshift=-0.1cm,yshift=0.1cm]M1.north west) node (a) {} --
+  ([xshift=0.1cm,yshift=0.3cm]M2.north west) node[xshift=0.2cm,yshift=0.2cm,rotate=45] (b) {...};
+
+  % WFI
+  \node[img,fill=green,right=5cm of P3,label={[red]water}] (W) {};
+  \node[img,fill=red,anchor=west,label={[red]fat}] (F) at (W.east) {};
+  \node[img,fill=blue,anchor=west,label={[blue]$R_2^{\ast}$}] (R2s) at (F.east) {};
+  \node[img,fill=yellow,anchor=west,label={[yellow]total field}] (fm) at (R2s.east) {};
+  \node[draw=none,below of=R2s,anchor=north,text width=10cm] (WFItext) {%
+    Field mapping:
+    \begin{itemize}
+    \item region-growing IDEAL + Laplacian unwrapping
+    \item graph cut
+    \end{itemize}
+  };
+  \node[draw,fit={(W) (fm) (WFItext)},inner sep=20pt] {};
+
+  % BFR
+  \node[img,fill=green,below=4cm of fm,label=local field] (lf) {};
+  \node[draw,below of=lf,anchor=north,text width=6.3cm] (BFRtext) {%
+    Background field removal:
+    \begin{itemize}
+    \item Laplacian boundary value method
+    \item Projection onto dipole fields
+    \end{itemize}
+  };
+  \node[draw,fit={(lf) (BFRtext)},inner sep=20pt] {};
+
+  % QSM
+  \node[img,fill=magenta,left=10cm of lf,label=susceptibility] (qsm) {};
+  \node[draw,below of=qsm,anchor=north,text width=8cm] (QSMtext) {%
+    Dipole inversion:
+    \begin{itemize}
+    \item \(\ell_2\)-TV closed-form solution
+    \item \(\ell_2\)-TV morphology-enabled dipole inversion conjugate gradient solution
+    \item \(\ell_1\)-TV morphology-enabled dipole inversion Nesterov's algorithm
+    \end{itemize}
+  };
+  \node[draw,fit={(qsm) (QSMtext)},inner sep=20pt] {};
+
+\end{tikzpicture}

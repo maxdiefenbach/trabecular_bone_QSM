@@ -1,0 +1,40 @@
+% This file was created by matlab2tikz.
+%
+%The latest updates can be retrieved from
+%  http://www.mathworks.com/matlabcentral/fileexchange/22022-matlab2tikz-matlab2tikz
+%where you can also make suggestions and rate matlab2tikz.
+%
+\documentclass[tikz]{standalone}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{pgfplots}
+\usepackage{grffile}
+\pgfplotsset{compat=newest}
+\usetikzlibrary{plotmarks}
+\usepgfplotslibrary{patchplots}
+\usepackage{amsmath}
+
+\begin{document}
+\begin{tikzpicture}
+
+\begin{axis}[%
+width=4.754in,
+height=4.754in,
+at={(1.289in,0.642in)},
+scale only axis,
+point meta min=-1,
+point meta max=-0,
+axis on top,
+xmin=0.5,
+xmax=363.5,
+y dir=reverse,
+ymin=0.5,
+ymax=363.5,
+axis background/.style={fill=white},
+colormap/blackwhite,
+colorbar
+]
+\addplot [forget plot] graphics [xmin=0.5,xmax=363.5,ymin=0.5,ymax=363.5] {P4_B0dir001_nonUTE_mask-1.png};
+\end{axis}
+\end{tikzpicture}%
+\end{document}

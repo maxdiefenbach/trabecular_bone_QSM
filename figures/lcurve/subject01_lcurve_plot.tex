@@ -1,0 +1,83 @@
+% This file was created by matlab2tikz.
+%
+%The latest updates can be retrieved from
+%  http://www.mathworks.com/matlabcentral/fileexchange/22022-matlab2tikz-matlab2tikz
+%where you can also make suggestions and rate matlab2tikz.
+%
+\documentclass[tikz]{standalone}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{pgfplots}
+\usepackage{grffile}
+\pgfplotsset{compat=newest}
+\usetikzlibrary{plotmarks}
+\usepgfplotslibrary{patchplots}
+\usepackage{amsmath}
+
+\begin{document}
+\definecolor{mycolor1}{rgb}{0.00000,0.44700,0.74100}%
+\definecolor{mycolor2}{rgb}{0.85000,0.32500,0.09800}%
+%
+\begin{tikzpicture}
+
+\begin{axis}[%
+width=6.028in,
+height=4.754in,
+at={(1.011in,0.642in)},
+scale only axis,
+xmin=0,
+xmax=1,
+xlabel={regularization parameter},
+ymin=1000,
+ymax=1000000,
+ylabel={discrepancy},
+axis background/.style={fill=white},
+axis x line*=bottom,
+axis y line*=left,
+legend style={legend cell align=left,align=left,draw=white!15!black}
+]
+\addplot [color=mycolor1,solid,mark=o,mark options={solid}]
+  table[row sep=crcr]{%
+0.0001	28657.9953468758\\
+0.0005	26314.111672019\\
+0.001	26535.8765580347\\
+0.002	26554.8613526595\\
+0.004	27115.0639983788\\
+0.006	27208.6403179198\\
+0.008	27880.5764573063\\
+0.01	28146.1709393204\\
+0.02	29693.9771013171\\
+0.04	32447.654768475\\
+0.06	35508.5892993069\\
+0.08	37736.0609974729\\
+0.1	40237.2636094113\\
+0.2	48797.7942083989\\
+0.5	63322.4007898615\\
+1	78420.6135711926\\
+};
+\addlegendentry{l2-TV cl form sol.};
+
+\addplot [color=mycolor2,solid,mark=o,mark options={solid}]
+  table[row sep=crcr]{%
+0.0001	18064103133066.7\\
+0.0005	1.36799227842123e+17\\
+0.001	108928193992028\\
+0.002	726940787.380671\\
+0.004	44201.4285603057\\
+0.006	516689.605815861\\
+0.008	2292339.77384364\\
+0.01	2220646.84591125\\
+0.02	20363590.9690186\\
+0.04	52056.9423408082\\
+0.06	49886.652681975\\
+0.08	49422.9777776177\\
+0.1	49160.070955738\\
+0.2	47706.467554024\\
+0.5	47557.866028953\\
+1	50374.1982596268\\
+};
+\addlegendentry{l2-TV conj. gradients};
+
+\end{axis}
+\end{tikzpicture}%
+\end{document}

@@ -1,0 +1,107 @@
+\documentclass[tikz]{standalone}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{tikz,pgfplots}
+\usepackage{grffile}
+\pgfplotsset{compat=newest}
+\usetikzlibrary{plotmarks,positioning,fit,shapes.geometric,arrows,external,matrix,backgrounds,spy}
+\usepgfplotslibrary{colormaps,patchplots,groupplots}
+\usepackage{siunitx,xcolor}
+
+
+\begin{document}
+
+\definecolor{viridis_zero_color}{RGB}{33, 145, 140}
+
+\begin{tikzpicture}[spy using outlines= {rectangle,magnification=2}]
+
+  \begin{groupplot}[%
+    group style={group size=1 by 4,
+      horizontal sep=0cm,
+      vertical sep=0cm},
+    xtick=\empty,
+    ytick=\empty,
+    width=3.5cm,
+    height=3.5cm,
+    scale only axis,
+    y dir=reverse,
+    % hide axis,
+    colorbar style={%
+      y dir=normal,
+      hide axis=false,
+      height=2cm,
+      xshift=-0.2cm,
+      yshift=-0.78cm,
+      title style={font=\tiny,yshift=-0.2cm},
+      tick label style={font=\tiny},
+    }
+    ]
+
+    \nextgroupplot[%
+    width=1.417cm,
+    xmin=1,
+    xmax=137,
+    ymin=1,
+    ymax=385,
+    axis background/.style={fill=black},
+    title={patient 2},
+    title style={xshift=0cm},
+    % ylabel={$\text{MIP}_{\text{TE}}$},
+    ]
+    \addplot [forget plot] graphics [xmin=1,xmax=137,ymin=1,ymax=385] {mip1-2.png};
+    % \addplot [red,mark size=4pt,mark=+,forget plot] coordinates {(61,296)};
+
+
+    \nextgroupplot[%
+    width=1.417cm,
+    xmin=1,
+    xmax=137,
+    ymin=1,
+    ymax=385,
+    % ylabel={$R_2^{*}$},
+    ]
+    \addplot [forget plot] graphics [xmin=1,xmax=137,ymin=1,ymax=385] {r2s1-2.png};
+    % \addplot [red,mark size=4pt,mark=+,forget plot] coordinates {(61,296)};
+    \coordinate (spynode1b) at (axis cs:60,290);
+    \coordinate (magnifyglass1b) at (axis cs:250,260);
+
+    
+    \nextgroupplot[%
+    axis line style={viridis_zero_color},
+    width=1.417cm,
+    xmin=1,
+    xmax=137,
+    ymin=1,
+    ymax=385,
+    % ylabel={\(\chi\) TV-MEDI},
+    ]
+    \addplot [forget plot] graphics [xmin=1,xmax=137,ymin=1,ymax=385] {chi1-2.png};
+    % \addplot [red,mark size=4pt,mark=+,forget plot] coordinates {(61,296)};
+    \coordinate (spynode2b) at (axis cs:60,290);
+    \coordinate (magnifyglass2b) at (axis cs:250,260);
+
+
+    \nextgroupplot[%
+    width=1.417cm,
+    xmin=1,
+    xmax=137,
+    ymin=1,
+    ymax=385,
+    xlabel={cor},
+    % ylabel={CT},
+    ]
+    \addplot [forget plot] graphics [xmin=1,xmax=137,ymin=1,ymax=385] {ct1-2.png};
+    % \addplot [red,mark size=4pt,mark=+,forget plot] coordinates {(61,296)};
+    \coordinate (spynode3b) at (axis cs:60,290);
+    \coordinate (magnifyglass3b) at (axis cs:250,260);
+    
+
+  \end{groupplot}
+
+  \spy [connect spies,orange,width=2.2cm,height=1.7cm] on (spynode1b) in node at (magnifyglass1b);
+  \spy [connect spies,orange,width=2.2cm,height=1.7cm] on (spynode2b) in node at (magnifyglass2b);
+  \spy [connect spies,orange,width=2.2cm,height=1.7cm] on (spynode3b) in node at (magnifyglass3b);
+
+\end{tikzpicture}
+
+\end{document}

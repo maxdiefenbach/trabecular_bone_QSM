@@ -1,0 +1,75 @@
+\documentclass[tikz]{standalone}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{pgfplots}
+\usepackage{grffile}
+\pgfplotsset{compat=newest}
+\usetikzlibrary{plotmarks,positioning,fit}
+\usepgfplotslibrary{patchplots,groupplots}
+\usepackage{siunitx}
+\usepackage{amsmath}
+
+\newcommand{\image}[1]{\includegraphics[width=2cm,height=2cm]{#1}}
+
+\begin{document}
+
+\begin{tikzpicture}[every label/.style={font=\tiny}]
+  \tikzstyle{img}=[%
+  draw,
+  inner sep=0cm,
+  outer sep=0cm,
+  minimum width=2cm,
+  minimum height=2cm];
+
+  % nodes
+  \node[img,label={micro CT}] (ct) {\image{muCT}};
+  \node[img,fill=red,above right=of ct,label={[]bone susceptibility map}] (bonemask) {\image{P4_B0dir001_nonUTE_mask-1.png}};
+  \node[draw,text width=2.6cm,align=center,minimum width=2cm,minimum height=0.5cm,right=of bonemask] (isoer) {isotropic erosion};
+  \node[draw,text width=2.6cm,align=center,minimum width=2cm,minimum height=0.5cm,above=0.2cm of isoer] (noer) {no erosion};
+  \node[draw,text width=2.6cm,align=center,minimum width=2cm,minimum height=0.5cm,below=0.2cm of isoer] (direr) {directed erosion};
+  \node[img,right=of isoer,label={microscopic field map}] (fieldmap) {\image{P4_B0dir001_nonUTE_RDF-1.png}};
+  \node[minimum width=4cm,minimum height=4cm,fill=gray,yshift=-1cm,right=of fieldmap,label={microscopic signal}] (micro) {
+    \begin{tikzpicture}[node distance=0]
+      \node[img] (a1) {\image{P4_B0dir001_nonUTE_signal-1.png}};
+      \node[img,right=of a1] (b1) {\image{P4_B0dir001_nonUTE_signal-3.png}};
+      \node[img,below=of a1] (c1) {\image{P4_B0dir001_nonUTE_signal-2.png}};
+      \node[img,right=of c1] (d1) {\image{P4_B0dir001_nonUTE_signal-4.png}};
+    \end{tikzpicture}
+  };
+  \node[minimum width=4cm,minimum height=4cm,fill=gray,below=of micro,label={macroscopic signal}] (macro) {
+    \begin{tikzpicture}[node distance=0]
+      \node[img] (a2) {\includegraphics[width=2cm,height=2cm,angle=0]{P4_B0dir001_nonUTE_signal_downsamp-1.png}};
+      \node[img,right=of a2] (b2) {\includegraphics[width=2cm,height=2cm,angle=0]{P4_B0dir001_nonUTE_signal_downsamp-2.png}};
+      \node[img,below=of a2] (c2) {\includegraphics[width=2cm,height=2cm,angle=0]{P4_B0dir001_nonUTE_signal_downsamp-3.png}};
+      \node[img,right=of c2] (d2) {\includegraphics[width=2cm,height=2cm,angle=0]{P4_B0dir001_nonUTE_signal_downsamp-4.png}};
+    \end{tikzpicture}
+  };
+  \node[draw,rotate=90,rectangle,right=of micro,xshift=-3.8cm] (downsamp) {Downsampling};
+
+  \node[img,left=of macro,yshift=1.5cm,label={$R_2^*$}] (r2s) {\image{P4_B0dir001_nonUTE_R2s-1.png}};
+  \node[img,below=of r2s,label={est. macroscopic field map}] (rdf) {\image{P4_B0dir001_nonUTE_RDF_downsamp-1.png}};
+  \node[img,left=of rdf,label={est. susceptibility $\chi$}] (qsm) {\image{P4_B0dir001_nonUTE_chi-1.png}};
+
+  \node[draw,red,minimum width=0.25cm,minimum height=0.25cm] at (bonemask) {};
+  \node[draw,red,minimum width=0.25cm,minimum height=0.25cm] at (r2s) {};
+  \node[draw,red,minimum width=0.25cm,minimum height=0.25cm] at (qsm) {};
+
+  % paths
+  \draw (ct) -- +(1.5cm,0) |- (bonemask);
+  \draw (bonemask) -- (isoer);
+  \draw (bonemask) -- +(1.5cm,0) |- (noer);
+  \draw (bonemask) -- +(1.5cm,0) |- (direr);
+  \draw (fieldmap) -- (isoer);
+  \draw (fieldmap) -- +(-1.5cm,0) |- (noer);
+  \draw (fieldmap) -- +(-1.5cm,0) |- (direr);
+  \draw (fieldmap) -- +(2cm,0);
+  \draw (micro) -| (downsamp) |- (macro);
+  % \draw (micro) -- +(3cm,0cm) -- (macro);
+  \draw(r2s) -- +(2cm,0);
+  \draw(rdf) -- +(2cm,0);
+  \draw (rdf) -- (qsm);
+  
+
+\end{tikzpicture}
+
+\end{document}

@@ -1,0 +1,52 @@
+% This file was created by matlab2tikz.
+%
+%The latest updates can be retrieved from
+%  http://www.mathworks.com/matlabcentral/fileexchange/22022-matlab2tikz-matlab2tikz
+%where you can also make suggestions and rate matlab2tikz.
+%
+\documentclass[tikz]{standalone}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{pgfplots}
+\usepackage{grffile}
+\pgfplotsset{compat=newest}
+\usetikzlibrary{plotmarks}
+\usepgfplotslibrary{patchplots}
+\usepackage{amsmath}
+
+\begin{document}
+\begin{tikzpicture}
+
+\begin{axis}[%
+width=2.603in,
+height=2.603in,
+at={(1.011in,1.717in)},
+scale only axis,
+axis on top,
+xmin=0.5,
+xmax=288.5,
+y dir=reverse,
+ymin=0.5,
+ymax=288.5,
+hide axis
+]
+\addplot [forget plot] graphics [xmin=0.5,xmax=288.5,ymin=0.5,ymax=288.5] {anatomical_images-1.png};
+\end{axis}
+
+\begin{axis}[%
+width=2.603in,
+height=2.603in,
+at={(4.436in,1.717in)},
+scale only axis,
+axis on top,
+xmin=0.5,
+xmax=840.5,
+y dir=reverse,
+ymin=0.5,
+ymax=840.5,
+hide axis
+]
+\addplot [forget plot] graphics [xmin=0.5,xmax=840.5,ymin=0.5,ymax=840.5] {anatomical_images-2.png};
+\end{axis}
+\end{tikzpicture}%
+\end{document}

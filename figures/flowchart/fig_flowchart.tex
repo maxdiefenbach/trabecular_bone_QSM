@@ -1,0 +1,90 @@
+\documentclass[tikz]{standalone}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{pgfplots}
+\usepackage{grffile}
+\pgfplotsset{compat=newest}
+\usetikzlibrary{plotmarks,positioning,fit}
+\usepgfplotslibrary{patchplots,groupplots}
+\usepackage{siunitx}
+\usepackage{amsmath}
+
+\newcommand{\myincimg}[1]{\includegraphics[width=3cm]{#1}}
+
+\begin{document}
+
+\begin{tikzpicture}
+  \tikzstyle{img}=[%
+  draw,
+  inner sep=0cm,
+  outer sep=0cm,
+  minimum width=3cm,
+  minimum height=3cm];
+
+  % source images
+  \node[img,label={magnitude}] (M3) {\myincimg{src-5.png}};
+  \node[img,below left of=M3,node distance=1.5cm] (M2) {\myincimg{src-3.png}};
+  \node[img,below left of=M2,node distance=1cm] (M1) {\myincimg{src-1.png}};
+  \node[img,right of=M3,node distance=3cm,label={phase}] (P3) {\myincimg{src-6.png}};
+  \node[img,below left of=P3,node distance=1.5cm] (P2) {\myincimg{src-4.png}};
+  \node[img,below left of=P2,node distance=1cm] (P1) {\myincimg{src-2.png}};
+  % \node[draw,fit={(M1) (M3) (P1) (P3)},inner sep=20pt] {};
+  \node[draw=none,above left of=P1,font=\tiny,node distance=4.5cm]{TE};
+  \draw[->] ([xshift=-0.1cm,yshift=0.1cm]M1.north west) node (a) {} --
+  ([xshift=0.1cm,yshift=0.3cm]M2.north west) node[xshift=0.2cm,yshift=0.2cm,rotate=45] (b) {...};
+  \node[draw=none,below=0.3cm of P1,anchor=north,text width=6cm,inner sep=0,outer sep=2pt] (SRCtext) {%
+    MR scan: TIMGRE sequence
+    % \begin{itemize}
+    % \item TIMGRE sequence
+    % \item + concomitant gradient correction
+    % \end{itemize}
+  };
+
+  % WFI
+  \node[img,right=3cm of P3,label={PDFF}] (pdff) {\myincimg{pdff-1.png}};
+  \node[img,anchor=west,label={$R_2^{\ast}$}] (R2s) at (pdff.east) {\myincimg{R2s-1.png}};
+  \node[img,anchor=west,label={total field}] (fm) at (R2s.east) {\myincimg{total_field_ppm-1.png}};
+  \node[draw=none,below=0.3cm of R2s,anchor=north,text width=8cm,inner sep=0,outer sep=2pt] (WFItext) {%
+    Field mapping: region-growing + IDEAL
+    % \begin{itemize}
+    % \item region-growing IDEAL + Laplacian unwrapping
+    % \item graph cut
+    % \end{itemize}
+  };
+  % \node[draw,fit={(fm) (WFItext)},inner sep=2pt] {};
+
+  % BFR
+  \node[img,below=3cm of fm,label=local field] (lf) {\myincimg{local_field_ppm-1.png}};
+  \node[draw=none,below=0.3cm of lf,anchor=north,text width=6.3cm,inner sep=0,outer sep=2pt] (BFRtext) {%
+    Background field removal: \\ Laplacian boundary value method
+    % \begin{itemize}
+    % \item Laplacian boundary value method
+    % \item Projection onto dipole fields
+    % \end{itemize}
+  };
+  % \node[draw,fit={(lf) (BFRtext)},inner sep=20pt] {};
+
+  % QSM
+  \node[img,left=6cm of lf,label=susceptibility] (qsm) {\myincimg{chi-1.png}};
+  \node[draw=none,below=0.3cm of qsm,anchor=north,text width=8cm,inner sep=0,outer sep=2pt] (QSMtext) {%
+    Dipole inversion: \\
+    (i) \(\ell_2\)-regularized closed-form solution, (ii) \(\ell_2\)-regularized morphology-enabled dipole inversion conjugate gradient solution, (iii) TV-regularized morphology-enabled dipole inversion Nesterov's algorithm
+    % \begin{itemize}     
+    % \item \(\ell_2\)-TV closed-form solution
+    % \item \(\ell_2\)-TV morphology-enabled dipole inversion conjugate gradient solution
+    % \item \(\ell_1\)-TV morphology-enabled dipole inversion Nesterov's algorithm
+    % \end{itemize}
+  };
+  % \node[draw,fit={(qsm) (QSMtext)},inner sep=20pt] {};
+
+
+  % paths
+  \draw[->] (P3.east) -- (pdff.west);
+  \node[coordinate,above right=2cm and 1.5cm of lf] (step) {};
+  \draw (fm) -| (step);
+  \draw[->] (step) |- (lf);
+  \draw[->] (lf) -- (qsm);
+\end{tikzpicture}
+
+
+\end{document}

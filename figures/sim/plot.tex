@@ -1,0 +1,40 @@
+\documentclass[tikz]{standalone}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{tikz,pgfplots}
+\usepackage{grffile}
+\pgfplotsset{compat=newest}
+\usetikzlibrary{plotmarks,positioning,fit,shapes.geometric,arrows,external,matrix,backgrounds,spy}
+\usepgfplotslibrary{patchplots,groupplots}
+\usepackage{siunitx,xcolor}
+
+\begin{document}
+
+\begin{tikzpicture}
+  \begin{groupplot}[%
+    group style={group size=2 by 1,
+      horizontal sep=0,
+      vertical sep=0},
+    xtick=\empty,
+    ytick=\empty,
+    width=3cm,
+    height=3cm,
+    scale only axis,
+    y dir=reverse,
+    colormap/viridis,
+    ]
+
+    \nextgroupplot[%
+    ylabel={bone volume / total volume}
+    ]
+    \addplot[color=black,solid,line width=2pt] coordinates {(1,0)(0,1)};
+
+    \nextgroupplot[%
+    ]
+    \addplot[color=black,solid,line width=2pt] coordinates {(1,0)(0,1)};
+    
+  \end{groupplot}
+
+\end{tikzpicture}
+
+\end{document}

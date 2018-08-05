@@ -1,0 +1,22 @@
+# R: 0.9999999999999796
+# R^2: 0.9999999999999591
+# p-value: 2.042811365310288e-14
+# Optimal Parameters:
+#   slope a: 0.08770211465930111
+#   slope b: 9.421890975747083e-09
+x	y	px	py	std	CIupper	CIlower
+0.5	0.04385107366834109	0.5	0.04385106675156651	1.1906315961423475e-08	0.0438510900879458	0.043851043415187224
+1.0	0.08770212108557272	1.0	0.08770212408121704	7.816434034535517e-09	0.08770213940142775	0.08770210876100633
+1.5	0.13155316665168268	1.5	0.13155318141086755	7.671702106696843e-09	0.13155319644740368	0.13155316637433143
+2.0	0.17540424957847295	2.0	0.17540423874051808	1.1620476598066115e-08	0.17540426151665223	0.17540421596438394
+
+
+# \addplot[only marks] table[x=x,y=y] {fixNr_dchiR2p.dat};
+# \addplot[draw=black] table[x=px,y=py] {fixNr_dchiR2p.dat};
+# \addplot[draw=black,name path=CIlower] table[x=px,y=CIlower] {fixNr_dchiR2p.dat};
+# \addplot[draw=black,name path=CIupper] table[x=px,y=CIupper] {fixNr_dchiR2p.dat};
+# \addplot[fill=gray] fill between [of=CIlower and CIupper];
+# \node[anchor=west,align=left,font=\tiny] at (rel axis cs:0.05,0.85)
+# {\(y = 0.0877 x + 9.42e-09\) \\
+# \(R^2 = 1.0\) \\
+# \(p = 2.04281e-14\)};

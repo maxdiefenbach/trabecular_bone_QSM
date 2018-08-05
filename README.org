@@ -12,7 +12,7 @@
 
 * Description
 
-Example MATLAB code to perform Quantitative Susceptibility Mapping (QSM) to measure trabecular bone density from the article
+Example source code to perform Quantitative Susceptibility Mapping (QSM) to measure trabecular bone density from the article
 
 /Diefenbach, M. N., Meineke, J., Ruschke, S., Baum, T., Gersing, A., Karampinos, D. C., On the Sensitivity of Quantitative Susceptibility Mapping for Measuring Trabecular Bone Density, 
 submitted to Magnetic Resonance in Medicine/
@@ -28,6 +28,7 @@ submitted to Magnetic Resonance in Medicine/
     + =3rd=:
     + ...
   - =data/=:
+  - =figures/=:
 
 * Example Result
   Output from the script =demo.m=:

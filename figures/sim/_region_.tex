@@ -1,0 +1,27 @@
+\message{ !name(fig_sim.tex)}\documentclass[tikz]{standalone}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{pgfplots}
+\usepackage{grffile}
+\pgfplotsset{compat=newest}
+\usetikzlibrary{plotmarks,positioning,fit}
+\usepgfplotslibrary{patchplots,groupplots}
+\usepackage{siunitx}
+\usepackage{amsmath}
+
+\begin{document}
+
+\message{ !name(fig_sim.tex) !offset(14) }
+img,right=of fieldmap] (micro) {};
+  \node[fill=orange,img,below=of micro] (macro) {};
+  \node[img,left=of macro] (r2s) {};
+  \node[img,below=of r2s] (rdf) {};
+  \node[img,left=of rdf] (qsm) {};
+  
+
+\end{tikzpicture}
+
+
+\message{ !name(fig_sim.tex) !offset(11) }
+
+\end{document}

@@ -1,0 +1,22 @@
+# R: 1.0
+# R^2: 1.0
+# p-value: 9.999999999999998e-21
+# Optimal Parameters:
+#   slope a: 0.2468325278282107
+#   slope b: 0.0
+x	y	px	py	std	CIupper	CIlower
+0.5	0.12341626391410535	0.5	0.12341626391265155			
+1.0	0.2468325278282107	1.0	0.2468325278274838			
+1.5	0.37024879174231606	1.5	0.37024879174231606			
+2.0	0.4936650556564214	2.0	0.4936650556571483			
+
+
+# \addplot[only marks] table[x=x,y=y] {fixNr_dchichi.dat};
+# \addplot[draw=black] table[x=px,y=py] {fixNr_dchichi.dat};
+# \addplot[draw=black,name path=CIlower] table[x=px,y=CIlower] {fixNr_dchichi.dat};
+# \addplot[draw=black,name path=CIupper] table[x=px,y=CIupper] {fixNr_dchichi.dat};
+# \addplot[fill=gray] fill between [of=CIlower and CIupper];
+# \node[anchor=west,align=left,font=\tiny] at (rel axis cs:0.05,0.85)
+# {\(y = 0.247 x + 0.0\) \\
+# \(R^2 = 1.0\) \\
+# \(p = 1e-20\)};

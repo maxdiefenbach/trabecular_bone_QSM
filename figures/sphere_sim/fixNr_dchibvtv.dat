@@ -1,0 +1,22 @@
+# R: 0.0
+# R^2: 0.0
+# p-value: 1.0
+# Optimal Parameters:
+#   slope a: 0.0
+#   slope b: 0.30283432006835936
+x	y	px	py	std	CIupper	CIlower
+0.5	0.30283432006835936	0.5	0.30283432006999556			
+1.0	0.30283432006835936	1.0	0.30283432006890476			
+1.5	0.30283432006835936	1.5	0.30283432006781397			
+2.0	0.30283432006835936	2.0	0.3028343200667232			
+
+
+# \addplot[only marks] table[x=x,y=y] {fixNr_dchibvtv.dat};
+# \addplot[draw=black] table[x=px,y=py] {fixNr_dchibvtv.dat};
+# \addplot[draw=black,name path=CIlower] table[x=px,y=CIlower] {fixNr_dchibvtv.dat};
+# \addplot[draw=black,name path=CIupper] table[x=px,y=CIupper] {fixNr_dchibvtv.dat};
+# \addplot[fill=gray] fill between [of=CIlower and CIupper];
+# \node[anchor=west,align=left,font=\tiny] at (rel axis cs:0.05,0.85)
+# {\(y = 0.0 x + 0.303\) \\
+# \(R^2 = 0.0\) \\
+# \(p = 1.0\)};
