@@ -1,0 +1,37 @@
+#+TITLE: Trabecular Bone QSM
+#+DATE: <2018-08-05 Sun>
+#+AUTHOR: Maximilian N. Diefenbach
+#+EMAIL: maximilian.diefenbach@tum.de
+#+OPTIONS: ':nil *:t -:t ::t <:t H:3 \n:nil ^:nil arch:headline author:t broken-links:nil c:nil creator:t
+#+OPTIONS: d:(not "LOGBOOK") date:t e:t email:t f:t inline:t num:nil p:nil pri:nil prop:nil stat:t tags:t tasks:t tex:t
+#+OPTIONS: timestamp:t title:t toc:nil todo:t |:t
+#+LANGUAGE: en
+#+SELECT_TAGS: export
+#+EXCLUDE_TAGS: noexport
+#+CREATOR: Emacs 25.3.1 (Org mode 9.0.4)
+
+* Description
+
+Example MATLAB code to perform Quantitative Susceptibility Mapping (QSM) to measure trabecular bone density from the article
+
+/Diefenbach, M. N., Meineke, J., Ruschke, S., Baum, T., Gersing, A., Karampinos, D. C., On the Sensitivity of Quantitative Susceptibility Mapping for Measuring Trabecular Bone Density, 
+submitted to Magnetic Resonance in Medicine/
+
+* Repository Overview
+  - =scripts/=:
+    + =demo.m=:
+    + =WFI_subject.m=:
+    + =BFR_subject.m=:
+    + =QSM_subject.m=:
+    + ...
+  - =code/=:
+    + =3rd=:
+    + ...
+  - =data/=:
+
+* Example Result
+  Output from the script =demo.m=:
+  
+
+* License
+  #+INCLUDE: "./LICENSE"
