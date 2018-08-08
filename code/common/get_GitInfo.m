@@ -17,14 +17,8 @@ function GitInfo = get_GitInfo(path)
     head = fileread(fullfile(path, '.git/HEAD'));
     tmp = strsplit(head, '/');
     branch = char(strrep(tmp(end), char(10), '')); % remove newline character ^Z
-    
-    headsfile = fullfile(path, '.git/refs/heads', branch);
-    if ~exist(headsfile, 'file')
-        GitInfo = struct();
-        return
-    end
-       
-    SHA1file = fileread();
+
+    SHA1file = fileread(fullfile(path, '.git/refs/heads', branch));
     commit = char(strrep(SHA1file, char(10), ''));
     
     remote = '';
