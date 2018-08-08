@@ -2,7 +2,7 @@
 
 # Description
 
-Example MATLAB code to perform Quantitative Susceptibility Mapping (QSM) to measure trabecular bone density from the article
+Example source code to perform Quantitative Susceptibility Mapping (QSM) to measure trabecular bone density from the article
 
 *Diefenbach, M. N., Meineke, J., Ruschke, S., Baum, T., Gersing, A., Karampinos, D. C., On the Sensitivity of Quantitative Susceptibility Mapping for Measuring Trabecular Bone Density, 
 submitted to Magnetic Resonance in Medicine*
@@ -10,21 +10,26 @@ submitted to Magnetic Resonance in Medicine*
 
 # Repository Overview
 
--   `scripts/`:
-    -   `demo.m`:
-    -   `WFI_subject.m`:
-    -   `BFR_subject.m`:
-    -   `QSM_subject.m`:
+-   `scripts/`: batch processing functionality
+    -   `demo.m`: runs QSM method from the paper on example dataset
+    -   `WFI_subject.m`: function to run field mapping step on a single subject dataset
+    -   `BFR_subject.m`: function to run background field removal step on a single subject dataset
+    -   `QSM_subject.m`: function to run dipole inversion step on a single subject dataset
     -   &#x2026;
--   `code/`:
-    -   `3rd`:
+-   `code/`: core algorithms
+    -   `3rd`: third party libraries
     -   &#x2026;
--   `data/`:
+-   `data/`: includes data of one examplary subject
+    -   `20180406_502_CT.nrrd`: CT image
+    -   `20180406_144018_0302_bFFEhires.nii.gz`: high res bSSFP image
+    -   `20180406_144018_0302_ImDataParams.mat:` TIMGRE data
+-   `figures/`: LaTeX/TikZ code to reproduce figures from the paper
 
 
 # Example Result
 
 Output from the script `demo.m`:
+![img](./scripts/output.png)
 
 
 # License
