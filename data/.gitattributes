@@ -1,0 +1,3 @@
+20180406_144018_0302_bFFEhires.nii.gz filter=lfs diff=lfs merge=lfs -text
+20180406_502_CT.nrrd filter=lfs diff=lfs merge=lfs -text
+20180406_144018_0302_ImDataParams.mat filter=lfs diff=lfs merge=lfs -text
