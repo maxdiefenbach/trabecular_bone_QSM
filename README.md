@@ -4,16 +4,15 @@
 
 Example source code to perform Quantitative Susceptibility Mapping (QSM) to measure trabecular bone density from the article
 
-*Diefenbach, M. N., Meineke, J., Ruschke, S., Baum, T., Gersing, A., Karampinos, D. C., On the Sensitivity of Quantitative Susceptibility Mapping for Measuring Trabecular Bone Density, Magnetic Resonance in Medicine Early View.* <https://doi.org/10.1002/mrm.27531> 
+*Diefenbach, M. N., Meineke, J., Ruschke, S., Baum, T., Gersing, A., & Karampinos, D. C., On the sensitivity of quantitative susceptibility mapping for measuring trabecular bone density, Magnetic Resonance in Medicine, (),  (2018).*  <http://dx.doi.org/10.1002/mrm.27531>
 
     @article{diefenbach18_sensit_quant_suscep_mappin_measur,
-      author =       {Maximilian N. Diefenbach and Jakob Meineke and Stefan Ruschke and Thomas Baum and Alexandra Gersing
+      author =       {Maximilian N. Diefenbach and Jakob Meineke and
+                      Stefan Ruschke and Thomas Baum and Alexandra Gersing
                       and Dimitrios C. Karampinos},
-      title =        {On the Sensitivity of Quantitative Susceptibility Mapping for Measuring Trabecular Bone Density},
+      title =        {On the Sensitivity of Quantitative Susceptibility
+                      Mapping for Measuring Trabecular Bone Density},
       journal =      {Magnetic Resonance in Medicine},
-      volume =       {nil},
-      number =       {nil},
-      pages =        {nil},
       year =         2018,
       doi =          {10.1002/mrm.27531},
       url =          {https://doi.org/10.1002/mrm.27531},
@@ -67,4 +66,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-
